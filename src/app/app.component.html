@@ -1,71 +1,9 @@
 <div class="container">
-  <div class="container">
-    <table class="table table-bordered">
-      <thead class="bg-primary text-white">
-        <tr>
-          <th [attr.colspan]="columnSpan">
-            <h4 class="text-center text-uppercase" [innerText]="info"></h4>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Employee ID:</td>
-          <td>{{id}}</td>
-        </tr>
-        <tr>
-          <td>Employee Name:</td>
-          <td>{{name}}</td>
-        </tr>
-        <tr>
-          <td>Gender</td>
-          <td>{{gender}}</td>
-        </tr>
-        <tr>
-          <td>Designation</td>
-          <td>{{designation}}</td>
-        </tr>
-        <tr>
-          <td>Location</td>
-          <td>{{location}}</td>
-        </tr>
-        <tr>
-          <td>Salary</td>
-          <td>{{salary}}</td>
-        </tr>
-        <tr>
-          <td>Profile Image</td>
-          <td><img [attr.Height]="imgHeight" [attr.Width]="imgWidth" [attr.src]="imgPath"></td>
-        </tr>
-        <tr>
-          <td [attr.colspan]="columnSpan">
-            <button [disabled]="isDisabled" class="btn btn-primary">Edit</button> &nbsp;
-            <button [disabled]="!isDisabled" class="btn btn-danger">Cancel</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h1>Install Bootstrap 5 in Angular 13 </h1>
-  <div class="card">
-    <div class="card-header">
-      Featured
-    </div>
-    <div class="card-body">
-      <p class="card-text">1. npm install bootstrap jquery popper.js --save</p>
-      <p class="card-text">2. import nó vào file angular.json:
-        "styles": [
-        "node_modules/bootstrap/dist/css/bootstrap.min.css",
-        "src/styles.css"
-        ],
-        "scripts": [
-        "node_modules/jquery/dist/jquery.min.js",
-        "node_modules/bootstrap/dist/js/bootstrap.min.js"
-        ]</p>
-      <p class="card-text">3. Import file css bootstrap của mình vào tệp style.css như sau: @import
-        "~bootstrap/dist/css/bootstrap.css";</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-  </div>
+    <br/>
+    <button (click)="clickMe()">Click Me</button>
+    <br /><br />
+    <input type="text" value="{{clickCount}}" />
+    <br /><br />
+    <input type="text" (input)="handleInput($event)" />
+    <p [innerText]="inputValue"></p>
 </div>
