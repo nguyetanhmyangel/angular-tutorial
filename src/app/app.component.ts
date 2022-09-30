@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -6,22 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title: string = "tutorial";
+  firstName: string = "Angular";
+  lastName: string = "tutorial";
+  fullName: string = "";
+  getFullName(): string {
+    return this.fullName = this.firstName + ' ' + this.lastName;
+  }
+  @Input() count: number = 0;
+  @Output() countChanged = new EventEmitter<number>();
+  handleIncrement(): void {
+    this.count++;
+    this.countChanged.emit(this.count);
+  }
 
-// interpolation bindings {{}}
-// property binding []
-// attribute binding [art.]
-
-  title = 'Base Tutorial';
-  info:string = 'Employee Information';
-  id:number = 1;
-  name:string = 'Moonlight';
-  gender:string = 'Male';
-  designation:string = 'Software Developer';
-  location:string = 'Vietnam';
-  salary:number = 100000;
-  imgHeight:number =400;
-  imgWidth:number =400;
-  imgPath:string = 'assets/images/Yuna.jpg';
-  columnSpan: number = 4;
-  isDisabled:boolean = true;
 }
