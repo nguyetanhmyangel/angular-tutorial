@@ -8,19 +8,19 @@ import { Component, Input } from '@angular/core';
 })
 export class AppComponent {
   title: string = "tutorial";
-  size: string = '20';
-  styleClass: StyleClass = new StyleClass();
-  cssStringVar: string= 'red size20';
-  cssArray:string[]=['red','size20']; 
+  defaultProgress:number = 2;
+
+  increment(): number {
+    return this.defaultProgress++;
+  }
+
+  decrement(): number {
+    return this.defaultProgress--;
+  }
+
 }
 
-class StyleClass {
-  'color': string= 'red';
-  'font-size.px': number= 20
-  'font-weight': string= 'bold';
-}
 
-class CssClass {
-  red: boolean= true;
-  size20: boolean= true;
-}
+
+
+

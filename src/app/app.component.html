@@ -2,23 +2,13 @@
   <br/>
   <div class='card'>
     <div class='card-header'>
-      ngStyle Example
+      pass data to child component Example
     </div>
     <div class="card-body">
-      Input size: <input type="text" [(ngModel)] = "size" />
-      <p [ngStyle]="{'color': 'blue', 'font-size': size + 'px', 'font-weight': 'bold'}">multi style</p>
-      <p [ngStyle]="styleClass">Using object from Controller</p>
-    </div>
-  </div>
-  <br />
-  <div class='card'>
-    <div class='card-header'>
-      ngClass Example
-    </div>
-    <div class="card-body">
-      <div [ngClass]="{'red':true,'size20':true}">Red Text with Size 20px</div>
-      <div [ngClass]="cssStringVar">Red Text with Size 20px : from component</div>
-      <div [ngClass]="cssArray">Red Text with Size 20px  : from CSS Array</div>
+      <button (click)="decrement()" >-</button>
+      <button (click)="increment()" style="margin-left: 10px;">+</button>
+      <app-child [progress] = defaultProgress></app-child>
+      
     </div>
   </div>
 </div>
