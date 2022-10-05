@@ -1,4 +1,4 @@
-import { Component, OnInit ,Input} from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-child',
@@ -6,35 +6,20 @@ import { Component, OnInit ,Input} from '@angular/core';
   styleUrls: ['./child.component.css']
 })
 export class ChildComponent implements OnInit {
-  private $progress!: number;
-
-  @Input()
-  get progress(): number {
-    return this.$progress;
-  }
-  set progress(value: number) {
-      if (value < 0) {
-        this.$progress = 0;
-      } else {
-        this.$progress = value;
-      }
+  @Input() progress!: number;
+  @Output() progressChanged: EventEmitter<number> = new EventEmitter();
+  
+  increment(): void {
+    this.progress++;
+    this.progressChanged.emit(this.progress);
   }
 
-  constructor() {}
+  decrement(): void {
+    this.progress--;
+    this.progressChanged.emit(this.progress);
+  }
 
-  // ngOnChanges(changes: SimpleChanges) {
-  //   if ('progress' in changes) {
-  //     if (typeof changes['progress'].currentValue !== 'number') {
-  //       const progress = Number(changes['progress'].currentValue);
-  //       if (Number.isNaN(progress)) {
-  //         this.progress = 0;
-  //       } else {
-  //         this.progress = progress;
-  //       }
-  //     }
-  //   }
-  // }
-
+  constructor() { }
 
   ngOnInit(): void {
   }

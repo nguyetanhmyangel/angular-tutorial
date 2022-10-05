@@ -1,14 +1,28 @@
 <div class="container">
-  <br/>
+  <br />
   <div class='card'>
     <div class='card-header'>
-      pass data to child component Example
+      pass data to parent component Example
     </div>
     <div class="card-body">
-      <button (click)="decrement()" >-</button>
-      <button (click)="increment()" style="margin-left: 10px;">+</button>
-      <app-child [progress] = defaultProgress></app-child>
-      
+      <h4>using @Output:</h4>
+      <app-child [progress]=defaultProgress (progressChanged)="progressChangedHandler($event)" #child></app-child>
+      <p>current progress: {{defaultProgress}}</p>
+      <div class="progress-bar-container">
+        <div class="progress" [style]="{
+          'background-color': 'aqua',
+          width: defaultProgress + '%'
+        }"></div>
+      </div>
+
+      <h4 style="margin-top: 20px;">using local variable:</h4>
+      <p>current progress: {{child.progress}}</p>
+      <div class="progress-bar-container">
+        <div class="progress" [style]="{
+          'background-color': 'red',
+          width: child.progress + '%'
+        }"></div>
+      </div>
     </div>
   </div>
 </div>

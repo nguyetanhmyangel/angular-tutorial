@@ -10,12 +10,8 @@ export class AppComponent {
   title: string = "tutorial";
   defaultProgress:number = 2;
 
-  increment(): number {
-    return this.defaultProgress++;
-  }
-
-  decrement(): number {
-    return this.defaultProgress--;
+  progressChangedHandler(currentProgress: number): void {
+    this.defaultProgress = currentProgress;
   }
 
 }
