@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-child',
@@ -6,17 +6,15 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./child.component.css']
 })
 export class ChildComponent implements OnInit {
-  @Input() progress!: number;
-  @Output() progressChanged: EventEmitter<number> = new EventEmitter();
-  
-  increment(): void {
+  progress: number = 2;
+
+
+  incrementByOne(): void {
     this.progress++;
-    this.progressChanged.emit(this.progress);
   }
 
-  decrement(): void {
+  decrementByOne(): void {
     this.progress--;
-    this.progressChanged.emit(this.progress);
   }
 
   constructor() { }

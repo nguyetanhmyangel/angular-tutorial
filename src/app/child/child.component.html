@@ -1,3 +1,7 @@
-
-<button (click)="decrement()" >-</button>
-<button (click)="increment()" style="margin-left: 10px;">+</button>
+<p>current progress: {{progress}}</p>
+<div class="progress-bar-container">
+  <div class="progress" [style]="{
+          'background-color': 'aqua',
+          width: progress + '%'
+        }"></div>
+</div>

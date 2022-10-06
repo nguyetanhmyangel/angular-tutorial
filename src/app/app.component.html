@@ -1,28 +1,19 @@
 <div class="container">
   <br />
   <div class='card'>
-    <div class='card-header'>
-      pass data to parent component Example
+    <div class='card-header' #cardHeader>
     </div>
     <div class="card-body">
-      <h4>using @Output:</h4>
-      <app-child [progress]=defaultProgress (progressChanged)="progressChangedHandler($event)" #child></app-child>
-      <p>current progress: {{defaultProgress}}</p>
-      <div class="progress-bar-container">
-        <div class="progress" [style]="{
-          'background-color': 'aqua',
-          width: defaultProgress + '%'
-        }"></div>
-      </div>
+      <button (click)="decrement()">-</button>
+      <button (click)="increment()" style="margin-left: 10px;">+</button>
+      <button (click)="show = !show" style="margin-left: 10px;">{{show ? 'show less' : 'show more'}}</button>
+      <app-child></app-child>
+      <app-child></app-child>
+      <app-child></app-child>
+      <ng-container *ngIf="show">
+        <app-child></app-child>
+      </ng-container>
 
-      <h4 style="margin-top: 20px;">using local variable:</h4>
-      <p>current progress: {{child.progress}}</p>
-      <div class="progress-bar-container">
-        <div class="progress" [style]="{
-          'background-color': 'red',
-          width: child.progress + '%'
-        }"></div>
-      </div>
     </div>
   </div>
 </div>

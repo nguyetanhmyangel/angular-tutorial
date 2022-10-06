@@ -1,1 +1,10 @@
 
+.progress-bar-container,
+.progress {
+  height: 20px;
+}
+
+.progress-bar-container {
+  width: 100%;
+  background-color: #ddd;
+}
