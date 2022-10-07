@@ -2,18 +2,69 @@
   <br />
   <div class='card'>
     <div class='card-header' #cardHeader>
+      Pipes example
     </div>
     <div class="card-body">
-      <button (click)="decrement()">-</button>
-      <button (click)="increment()" style="margin-left: 10px;">+</button>
-      <button (click)="show = !show" style="margin-left: 10px;">{{show ? 'show less' : 'show more'}}</button>
-      <app-child></app-child>
-      <app-child></app-child>
-      <app-child></app-child>
-      <ng-container *ngIf="show">
-        <app-child></app-child>
-      </ng-container>
+      <h3>Trong Angular chia làm hai loại Pipe là pure pipe và impure pipe.</h3>
+      <ul>
+        <li>Pure pipe: chỉ thực hiện thay đổi khi đầu vào thay đổi. (các immutable objects, primitive type: string,
+          number, boolean, etc): lowercase, uppercase, date, etc.</li>
+        <li>Impure pipe: thực hiện thay đổi mỗi chu kỳ của Change detection (chu kỳ kiểm tra xem các state trong ứng
+          dụng có thay đổi không để update lên view): async, json, etc.</li>
+      </ul>
+      <h4>Upper-Lower case</h4>
+      <ul>
+        <li>{{toString | uppercase}}</li>
+        <li>{{toString | lowercase}}</li>
+      </ul>
+      <h4>Date case</h4>
+      <ul>
+        <li>{{toDate}}</li>
+        <li>{{toDate | date:'dd/MM/y'}} </li>
+        <li>{{toDate | date:'dd/MM/yy HH:mm'}}</li>
+        <li>{{toDate | date:'dd/MM/yy HH:mm':'GMT +7'}} </li>
+      </ul>
+      <h4>Percent case</h4>
+      <ul>
+        <li>{{percentNumber | percent}}</li>
+        <li>{{percentNumber | percent: '4.3-5'}}</li>
+      </ul>
+      <h4>Currency case</h4>
+      <ul>
+        <li>{{price | currency: 'VND'}}</li>
+        <li>{{price | currency:'VND':true:'4.3-5'}}</li>
+      </ul>
+      <h4>Decimal case</h4>
+      <ul>
+        <li>{{price | number}}</li>
+        <li>{{price | number:'.1-4'}}</li>
+      </ul>
+      <h4>Slice case</h4>
+      <ul>
+        <li *ngFor="let i of collection | slice:1:3">{{i}}</li>
+        <li>{{myStr | slice:3:7}}</li>
+        <li>{{myStr | slice:3:-2}}</li>
+        <li>{{myStr | slice:6}}</li>
+        <li>{{myStr | slice:-6}}</li>
+      </ul>
+      <p>Với chuỗi myStr = "abcdefghijk"; chúng ta có start và end index như bên dưới</p>
+      <img [src]="imgPath">
+      <h4 style="margin-top: 10px;">Json case</h4>
+      <b>for Address Class</b>
 
+      <pre> {{address1 | json}} </pre>
+
+      <b>for Array of Address</b>
+
+      <pre> <div [innerHTML]="addressArray | json"></div> </pre>
+
+      <b>or Person Name Property</b>
+
+      <pre> {{person.pname | json}} </pre>
+
+      <b>for Person class</b>
+
+      <pre>{{person | json}}</pre>
     </div>
   </div>
 </div>

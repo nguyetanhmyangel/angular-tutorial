@@ -1,7 +1,8 @@
-import { Component, Directive, ElementRef, Input, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { NgModel } from '@angular/forms';
-import { ChildComponent } from './child/child.component';
-
+import { NodeWithI18n } from '@angular/compiler';
+import { Component } from '@angular/core';
+import { Address } from './address.model';
+import { Name } from './name.model';
+import { Person } from './person.model';
 
 @Component({
   selector: 'app-root',
@@ -10,38 +11,21 @@ import { ChildComponent } from './child/child.component';
 })
 export class AppComponent {
   title: string = "tutorial";
-  defaultProgress: number = 2;
-  serializedPanes: string = '';
-  show:boolean = true;
+  imgPath:string = 'assets/images/index.png';
+  toString: string = "Angular Pipes";
+  toDate: Date = new Date();
+  percentNumber: number = 10.3495;
+  price: number = 175.3495;
+  collection: string[] = ['a', 'b', 'c', 'd'];
+  myStr = "abcdefghijk";
+  address1 = new Address('Dhananjaypur', 'Varanasi', 'India');
+	address2 = new Address('Moonsi', 'Bhadohi', 'India');
+	addressArray = [this.address1, this.address2];
 
-  // assign with template variable
-  //@ViewChild('child') childComponent!: ChildComponent;
-  @ViewChild(ChildComponent) childComponent!: ChildComponent;
-  @ViewChild('cardHeader', { static: false }) headerText!: ElementRef;
-  @ViewChildren(ChildComponent) childComponents!: QueryList<ChildComponent>;
+	nameObj = new Name('Narendra', 'Modi');
+	dob = new Date(1950, 9, 17);
 
-  increment(): void {
-    this.childComponent.incrementByOne();
-  }
-
-  decrement(): void {
-    this.childComponent.decrementByOne();
-  }
-
-
-  ngOnInit() {
-    //console.log('onInit', this.childComponent);
-  }
-
-  ngAfterViewInit() {
-    //console.log(this.childComponent);
-    this.headerText.nativeElement.innerHTML = "ViewChild Example";
-    //this.headerText.nativeElement.style.color="red";
-    this.headerText.nativeElement.setAttribute('style', 'color: red; font-weight: bold;');
-    //console.log('onAfterViewInit', this.childComponent.progress);
-    this.childComponents.changes.subscribe(console.log);
-  }
-
+	person = new Person(100, this.nameObj, this.dob, this.address1);
 }
 
 
