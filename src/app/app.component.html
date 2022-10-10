@@ -65,6 +65,46 @@
       <b>for Person class</b>
 
       <pre>{{person | json}}</pre>
+      <h4>Custom case</h4>
+      <h3>1. Using welcome Pipe</h3>
+      {{employee.name | welcome}} <br />
+
+      <h3>2. Using strformat Pipe</h3>
+      {{message | strformat:'+'}}
+
+      <h3>3. Using division Pipe</h3>
+      <div>Dividend: <input [(ngModel)]="dividend"> </div>
+      <div>Divisor: <input [(ngModel)]="divisor"> </div>
+      <p>
+        Division Result: {{dividend | division: divisor}}
+      </p>
+
+      <h3>4. Using repeat Pipe</h3>
+      {{employee.name | repeat:10}}
+
+      <p>5. Using myjson Pipe</p>
+      <pre>{{employee | myjson}}</pre>
+      <pre>{{employee | myjson:0:'id,age'}}</pre>
+      <pre>{{employee | myjson:1:'id,name'}}</pre>
+
+      <p>6. Using myuppercaseone and myuppercasetwo Pipe</p>
+      {{message | myuppercaseone}} <br />
+      {{message | myuppercasetwo:'+'}} <br />
+
+      <p>7. Chaining of Custom Pipes</p>
+      {{employee.name | repeat:5 | myuppercaseone}}
+
+      <p>8. Using Pure and Impure Pipe</p>
+      Company Name: <input [(ngModel)]="compName" /> {{compName}}
+      <br />Location: <input [(ngModel)]="compLocation" /> {{compLocation}}
+      <br /><br /><button (click)="updateCompany()">Update Existing</button>
+      <button (click)="createCompany()">Create New </button>
+
+      <br /><b>a. Using Pure Pipe : companyone</b><br /><br />
+      {{company | companyone}}
+
+      <br /><br /><b>b. Using Impure Pipe : companytwo</b><br /><br />
+      {{company | companytwo}}
     </div>
   </div>
 </div>
