@@ -1,24 +1,54 @@
 
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, VERSION } from '@angular/core';
 
 @Component({
   selector: 'app-root',
+  changeDetection:ChangeDetectionStrategy.Default,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   txtTitle: string = "tutorial";
-  size = '25px';
-  colors = ['CYAN', 'GREEN', 'RED'];
-  myColor = '';
-  titleColor = 'green'
+  name = "Angular " + VERSION.major;
 
-  showCustomIf = false;
-  showCustomDelay = false;
-  delayInSec = 0;
+  message = "Hello";
+  content = "Hello";
+  hideChild=false;
 
-  changeCondition(flag: boolean) {
-    this.showCustomIf = flag;
+  constructor() {
+    console.log("AppComponent:Contructed");
+  }
+
+  ngOnChanges() {
+    console.log("AppComponent:ngOnChanges");
+  }
+
+  ngOnInit() {
+    console.log("AppComponent:ngOnInit");
+  }
+
+  ngDoCheck() {
+    console.log("AppComponent:DoCheck");
+  }
+
+  ngAfterContentInit() {
+    console.log("AppComponent:ngAfterContentInit");
+  }
+
+  ngAfterContentChecked() {
+    console.log("AppComponent:AfterContentChecked");
+  }
+
+  ngAfterViewInit() {
+    console.log("AppComponent:AfterViewInit");
+  }
+
+  ngAfterViewChecked() {
+    console.log("AppComponent:AfterViewChecked");
+  }
+
+  ngOnDestroy() {
+    console.log("AppComponent:ngOnDestroy");
   }
 }
 

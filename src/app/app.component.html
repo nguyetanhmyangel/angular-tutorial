@@ -2,68 +2,104 @@
   <br />
   <div class='card'>
     <div class='card-header' #cardHeader>
-      Custom Attribute Directives example
+      component life cycle hooks example
     </div>
     <div class="card-body">
-      <p customDefaultTheme> DefaultTheme Directive Demo</p>
+      <h1>Root Component</h1>
 
-      <h4 [customColor]="titleColor"> Color Directive Demo</h4>
 
-      <div customCustomTheme> CustomTheme Directive Demo with Default Settings</div>
-
-      <div customTheme custom_color="blue" custom_size="30px"> CustomTheme Directive Demo with Custom Settings</div>
-
-      <p customDefaultColorOnEvent> defaultColorOnEvent Directive Demo</p>
-
-      <div>
-        <select [(ngModel)]="myColor">
-          <option value='' selected disabled> Select Color </option>
-          <option *ngFor="let color of colors" [value]="color">
-            {{color}}
-          </option>
-        </select>
-        <p [customDynamicColorOnEvent]="myColor" defaultValue="blue">
-          dynamicColOnEvent Directive Demo</p>
-      </div>
-
-      <h2>Custom Structural Directives</h2>
-
-      <h3>customIf Directive</h3>
-      <div>
-        <input type="radio" name="rad1" (click)="changeCondition(true)"> True
-        <input type="radio" name="rad1" (click)="changeCondition(false)"> False
-      </div>
       <br />
-      <div *customIf="showCustomIf">
-        <b>Hello World!</b>
-      </div>
-      <ng-template [customIf]="!showCustomIf">
-        <div>
-          <b>Not Available</b>
-        </div>
-      </ng-template>
+      <input type="text" name="message" [(ngModel)]="message" autocomplete="off" />
+      <br />
+      <input type="text" name="content" [(ngModel)]="content" autocomplete="off" />
 
-      <h3>customLoop Directive</h3>
-      <ul>
-        <li *customLoop="3">
-          angular tutorial
+
+      <br />
+      hide child :
+      <input type="checkbox" name="hideChild" [(ngModel)]="hideChild" autocomplete="off" />
+
+      <br />
+      <br />
+      <app-child [message]="message" *ngIf="!hideChild">
+        <!-- Injected Content -->
+        <b> {{ content }} </b>
+      </app-child>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <br />
+  <div class='card'>
+    <div class='card-header' #cardHeader>
+      explain
+    </div>
+    <div class="card-body">
+      <p>* ngOnChanges() Thự thi khi Angular thiết lập các thuộc tính đầu vào ràng buộc dữ liệu. Được gọi trước
+        ngOnInit() và
+        bất cứ khi nào một hoặc nhiều thuộc tính đầu vào ràng buộc dữ liệu thay đổi.
+      </p>
+      <p>* ngOnInit() Khởi tạo directive / component sau khi Angular hiển thị các thuộc tính ràng buộc dữ liệu và đặt
+        các
+        thuộc tính đầu vào của directive / component. Được gọi một lần, sau ngOnChanges() đầu tiên.</p>
+      <p>* ngDoCheck() Phát hiện và hành động theo những thay đổi mà Angular không thể hoặc sẽ không tự mình phát hiện.
+        Được
+        gọi trong mỗi lần chạy phát hiện thay đổi, ngay sau ngOnChanges() và ngOnInit().</p>
+      <p>* ngAfterContentInit() Thự thi sau khi Angular thêm nội dung bên ngoài vào view của component / view mà
+        directive
+        được đưa vào. Được gọi một lần sau ngDoCheck() đầu tiên.
+      </p>
+      <p>* ngAfterContentChecked() Thự thi sau khi Angular đã kiểm tra nội dung bên ngoài đã được đưa vào view của
+        component.
+        Được gọi sau ngAfterContentInit() và mọi ngDoCheck() tiếp theo.</p>
+      <p>* ngAfterViewInit() Thự thi sau khi Angular khởi tạo các view của component và các view con / view mà directive
+        được
+        đưa vào. Được gọi một lần sau ngAfterContentChecked() đầu tiên.</p>
+      <p>* ngAfterViewChecked() Thực thi sau khi Angular kiểm tra các view của component và các view con /view mà
+        directive
+        được đưa vào. Được gọi sau ngAfterViewInit() và mọi ngAfterContentChecked() tiếp theo.</p>
+      <p>* ngOnDestroy() Dọn dẹp ngay trước khi Angular phá hủy directive / component. Hủy đăng ký Observables và tách
+        trình
+        xử lý sự kiện để tránh rò rỉ bộ nhớ. Được gọi ngay trước khi Angular phá hủy directive / component.</p>
+
+      <p>The Angular executes the hooks in the following order</p>
+      <p>On Component Creation</p>
+      <ol>
+        <li>OnChanges</li>
+        <li>OnInit</li>
+        <li>DoCheck</li>
+        <li>AfterContentInit</li>
+        <li>AfterContentChecked</li>
+        <li>AfterViewInit</li>
+        <li>AfterViewChecked</li>
+      </ol>
+      <p>When the Component with Child Component is created</p>
+      <ol>
+        <li>OnChanges</li>
+        <li>OnInit</li>
+        <li>DoCheck</li>
+        <li>AfterContentInit</li>
+        <li>AfterContentChecked
+          <ol>
+            <li>Child Component -> OnChanges</li>
+            <li>Child Component -> OnInit</li>
+            <li>Child Component -> DoCheck</li>
+            <li> Child Component -> AfterContentInit</li>
+            <li>Child Component -> AfterContentChecked</li>
+            <li>Child Component -> AfterViewInit</li>
+            <li>Child Component -> AfterViewChecked</li>
+          </ol>
         </li>
-      </ul>
-
-      <h3>customDelay Directive</h3>
-      <div>
-        Show message after
-        <input type="radio" name="rad2" (click)="showCustomDelay= true; delayInSec = 2000"> 2 Seconds
-        <input type="radio" name="rad2" (click)="showCustomDelay= true; delayInSec = 5000"> 5 Seconds
-        <input type="radio" name="rad2" (click)="showCustomDelay= true; delayInSec = 7000"> 7 Seconds
-      </div>
-      <br />
-      <div *customIf="showCustomDelay">
-        <div *customDelay="delayInSec">
-          <b> Hello World! </b>
-        </div>
-      </div>
-
+        <li>AfterViewInit</li>
+        <li>AfterViewChecked</li>
+      </ol>
+      <p>After The Component is Created</p>
+      <ol>
+        <li> OnChanges</li>
+        <li>DoCheck</li>
+        <li>AfterContentChecked</li>
+        <li>AfterViewChecked</li>
+      </ol>
     </div>
   </div>
 </div>
