@@ -2,34 +2,22 @@
   <br />
   <div class='card'>
     <div class='card-header' #cardHeader>
-      ngOnInit and ngOnDestroy example
+      OnChanges example
     </div>
     <div class="card-body">
       <!-- start -->
-      <h3>OnInit and OnDestroy using Component</h3>
-      <b>Example-1:</b> <br /><br />
-      <button type="button" (click)="onToggleCP1()">Toggle</button><br /><br />
-      <div *ngIf="showChildOne">
-        <app-child-one></app-child-one>
+      <div class="employee">
+        <form #empForm="ngForm" (ngSubmit)="onFormSubmit(empForm)">
+          <p>Name: <input name="name" [ngModel]="emp.name"></p>
+          <p>Age:<input name="age" [ngModel]="emp.age"></p>
+          <button>Submit</button>
+        </form>
       </div>
-      <br />
-      <div *ngIf="childOneLog">
-        <div *ngIf="childOneLog.logType === 'c'">
-          <font color="green">{{childOneLog.message}}</font>
-        </div>
-        <div *ngIf="childOneLog.logType === 'r'">
-          <font color="red">{{childOneLog.message}}</font>
-        </div>
+      <div class="message">
+        <p>Message: <input [(ngModel)]="msg" /></p>
       </div>
 
-      <br /><br /><b>Example-2:</b> <br /><br />
-      <button type="button" (click)="onToggleCounter()">Toggle Counter</button><br /><br />
-      <div *ngIf="showCounter">
-        <app-counter></app-counter>
-      </div>
-
-      <h3>OnInit and OnDestroy using Directive</h3>
-      <app-child-two></app-child-two>
+      <app-employee [employee]="emp" [message]="msg"></app-employee>
       <!-- end -->
     </div>
   </div>
