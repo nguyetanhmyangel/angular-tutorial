@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GrandChildComponent } from './grand-child.component';
+import { CounterComponent } from './counter.component';
 
-describe('GrandChildComponent', () => {
-  let component: GrandChildComponent;
-  let fixture: ComponentFixture<GrandChildComponent>;
+describe('CounterComponent', () => {
+  let component: CounterComponent;
+  let fixture: ComponentFixture<CounterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GrandChildComponent ]
+      declarations: [ CounterComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GrandChildComponent);
+    fixture = TestBed.createComponent(CounterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

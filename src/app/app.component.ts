@@ -1,55 +1,28 @@
 
-import { ChangeDetectionStrategy, Component, VERSION } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { Log } from './log';
+import { LoggerService } from './logger.service';
 
 @Component({
   selector: 'app-root',
-  changeDetection:ChangeDetectionStrategy.Default,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   txtTitle: string = "tutorial";
-  name = "Angular " + VERSION.major;
-
-  message = "Hello";
-  content = "Hello";
-  hideChild=false;
-
-  constructor() {
-    console.log("AppComponent:Contructed");
-  }
-
-  ngOnChanges() {
-    console.log("AppComponent:ngOnChanges");
-  }
-
-  ngOnInit() {
-    console.log("AppComponent:ngOnInit");
-  }
-
-  ngDoCheck() {
-    console.log("AppComponent:DoCheck");
-  }
-
-  ngAfterContentInit() {
-    console.log("AppComponent:ngAfterContentInit");
-  }
-
-  ngAfterContentChecked() {
-    console.log("AppComponent:AfterContentChecked");
-  }
-
-  ngAfterViewInit() {
-    console.log("AppComponent:AfterViewInit");
-  }
-
-  ngAfterViewChecked() {
-    console.log("AppComponent:AfterViewChecked");
-  }
-
-  ngOnDestroy() {
-    console.log("AppComponent:ngOnDestroy");
-  }
+  childOneLog = {} as Log;
+   constructor(private loggerService: LoggerService) {}
+   showChildOne = true;
+   showCounter = true;
+   ngOnInit() {
+	   this.childOneLog = this.loggerService.getChildOneLog();
+   }
+   onToggleCP1() {
+	   this.showChildOne = (this.showChildOne === true)? false : true;
+   }
+   onToggleCounter() {
+	   this.showCounter = (this.showCounter === true)? false : true;
+   }
 }
 
 
