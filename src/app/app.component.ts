@@ -1,35 +1,35 @@
-
-import { Component } from '@angular/core';
-import { Employee } from './employee';
+import { Component, ViewChild, ElementRef, OnInit, Injectable } from '@angular/core';
+import { NgForm, FormGroup } from '@angular/forms';
+import { Contact } from './services/contact';
+import { ContactService } from './services/contact.service';
+import { Country } from './services/country';
+import { CountryService } from './services/country.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent  {
-  title: string = "tutorial";
-  empArray:any[] = [];
-  index = 103;
+export class AppComponent {
+  title = 'Template driven forms';
+  countryList!: Country[];
+  contactList!: Contact[];
+
+  @ViewChild('contactForm') contactForm!: NgForm;
+
+
+  constructor(private countryService: CountryService, private contactService: ContactService) {
+  }
+
   ngOnInit() {
-    this.empArray.push(new Employee(100, "Mashes"));
-    this.empArray.push(new Employee(101, "Krishna"));
-    this.empArray.push(new Employee(102, "Shiva"));
+    this.countryList = this.countryService.getAllCountries();
+    this.contactList = this.contactService.getAllContacts();
   }
-  add() {
-    this.empArray.push(new Employee(this.index, "Name"+ this.index++));
-    console.log('Employee added: ' + JSON.stringify(this.empArray));
+
+  onSubmit() {
+    console.log(this.contactForm.value);
   }
-  remove(index: number) {
-    console.log(index);
-    this.empArray.splice(index, 1);
-  }
-  update(index: number) {
-    this.empArray[index].name += "-U";
-  }
+
+
+
 }
-
-
-
-
-

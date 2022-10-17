@@ -1,37 +1,97 @@
 <div class="container">
   <br />
   <div class='card'>
-    <div class='card-header' #cardHeader>
-      OnChanges example
+    <div class='card-header'>
+      Template-driven-forms example
     </div>
     <div class="card-body">
       <!-- start -->
-      <h2>ngDoCheck() Demo</h2>
-      <table border="1" cellpadding="8" cellspacing="0">
-        <tr *ngFor="let emp of empArray; let i = index">
-          <td>{{emp.id}}</td>
-          <td>{{emp.name}}</td>
-          <td><button (click)="remove(i)">Remove</button></td>
-          <td><button (click)="update(i)">Update</button></td>
-        </tr>
-      </table>
-      <button (click)="add()" style="margin-top: 10px;">Add</button>
-      <h3>Change Logs</h3>
-      <table border="1" cellpadding="8" cellspacing="0">
-        <tr>
-          <td><b>Using KeyValueDiffers</b></td>
-          <td><b>Using IterableDiffers</b></td>
-        </tr>
-        <tr>
-          <td>
-            <app-employee-keyvalue-diff  [empArray]="empArray"></app-employee-keyvalue-diff>
-          </td>
-          <td>
-            <app-employee-iterable-diff [empArray]="empArray"></app-employee-iterable-diff>
-          </td>
-        </tr>
-      </table>
+      <form #contactForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="firstname">First Name </label>
+          <input type="text" class="form-control" id="firstname" name="firstname" #fname="ngModel" ngModel>
+
+        </div>
+        <div class="form-group">
+          <label for="lastname">Last Name </label>
+          <input class="form-control" type="text" id="lastname" name="lastname" ngModel>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email </label>
+          <input class="form-control" type="text" id="email" name="email" ngModel>
+        </div>
+
+        <div class="form-group">
+          <label for="country">Country </label>
+          <select class="form-control" id="country" name="country" ngModel>
+            <option [ngValue]="c.id" *ngFor="let c of countryList">
+              {{c.name}}
+            </option>
+          </select>
+        </div>
+
+        <ng-container ngModelGroup="address">
+          <div class="form-group">
+            <label for="email">City </label>
+            <input class="form-control" type="text" id="city" name="city" ngModel>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Street </label>
+            <input class="form-control" type="text" id="street" name="street" ngModel>
+          </div>
+
+          <div class="form-group">
+            <label for="email">PinCode </label>
+            <input class="form-control" type="text" id="pinCode" name="pinCode" ngModel>
+          </div>
+        </ng-container>
+
+        <div class="form-group">
+          <div class="form-check form-check-inline">
+            <input type="radio" class="form-check-input" value="male" id="gender" name="gender" value="Male" checked
+              ngModel>
+            <label class="form-check-label" for="male">Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input type="radio" class="form-check-input" value="female" id="gender" name="gender" value="Female"
+              ngModel>
+            <label class="form-check-label" for="female">Female</label>
+          </div>
+        </div>
+
+        <div class="form-group form-check">
+          <label for="isMarried" class="form-check-label">Married </label>
+          <input type="checkbox" class="form-check-input" id="isMarried" name="isMarried" ngModel>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <br /><br />
+
+      <b>Value</b> : {{contactForm.value}}
+      <b>valid</b> : {{contactForm.valid}}
+      <b>invalid</b> : {{contactForm.invalid}}
+      <b>touched</b> : {{contactForm.touched}}
+      <pre>Value : {{contactForm.value | json }} </pre>
+      <p>
+        <b>Valid</b> : {{contactForm.valid}}
+        <b>Touched</b> : {{contactForm.touched }}
+        <b>Submitted</b> : {{contactForm.submitted }}
+      </p>
       <!-- end -->
     </div>
   </div>
 </div>
+
+<!-- <div class="container">
+  <br />
+  <div class='card'>
+    <div class='card-header' #cardHeader>
+      Explain
+    </div>
+    <div class="card-body">
+
+    </div>
+  </div>
+</div> -->
