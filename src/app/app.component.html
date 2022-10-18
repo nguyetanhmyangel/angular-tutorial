@@ -2,85 +2,11 @@
   <br />
   <div class='card'>
     <div class='card-header'>
-      Template-driven-forms example
+      {{title}} example
     </div>
     <div class="card-body">
       <!-- start -->
-      <form #contactForm="ngForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="firstname">First Name </label>
-          <input type="text" class="form-control" id="firstname" name="firstname"  [(ngModel)] = "contact.firstName">
-        </div>
-        <div class="form-group">
-          <label for="lastname">Last Name </label>
-          <input class="form-control" type="text" id="lastname" name="lastname" [(ngModel)] = "contact.lastName">
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email </label>
-          <input class="form-control" type="text" id="email" name="email" [(ngModel)] = "contact.email">
-        </div>
-
-        <div class="form-group">
-          <label for="country">Country </label>
-          <select class="form-control" id="country" name="country" [(ngModel)] = "contact.country">
-            <option [ngValue]="c.id" *ngFor="let c of countryList">
-              {{c.name}}
-            </option>
-          </select>
-        </div>
-
-        <ng-container ngModelGroup="address">
-          <div class="form-group">
-            <label for="email">City </label>
-            <input class="form-control" type="text" id="city" name="city" [(ngModel)] = "contact.address.city">
-          </div>
-
-          <div class="form-group">
-            <label for="email">Street </label>
-            <input class="form-control" type="text" id="street" name="street" [(ngModel)] = "contact.address.street">
-          </div>
-
-          <div class="form-group">
-            <label for="email">PinCode </label>
-            <input class="form-control" type="text" id="pinCode" name="pinCode" [(ngModel)] = "contact.address.pinCode">
-          </div>
-        </ng-container>
-
-        <div class="form-group">
-          <div class="form-check form-check-inline">
-            <input type="radio" class="form-check-input" value="male" id="gender" name="gender" value="Male" checked
-            [(ngModel)] = "contact.gender">
-            <label class="form-check-label" for="male">Male</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input type="radio" class="form-check-input" value="female" id="gender" name="gender" value="Female"
-            [(ngModel)] = "contact.gender">
-            <label class="form-check-label" for="female">Female</label>
-          </div>
-        </div>
-
-        <div class="form-group form-check">
-          <label for="isMarried" class="form-check-label">Married </label>
-          <input type="checkbox" class="form-check-input" id="isMarried" name="isMarried" [(ngModel)] = "contact.isMarried">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>&nbsp;
-        <button type="button" class="btn btn-primary" (click)="changeCountry()">Change Country</button>&nbsp;
-        <button type="button" class="btn btn-primary" (click)="setDefaults()">Set Defaults</button>&nbsp;
-        <button type="button" class="btn btn-primary" (click)="reset(contactForm)">Reset</button>
-      </form>
-      <br /><br />
-
-      <b>Value</b> : {{contactForm.value}}
-      <b>valid</b> : {{contactForm.valid}}
-      <b>invalid</b> : {{contactForm.invalid}}
-      <b>touched</b> : {{contactForm.touched}}
-      <pre>Value : {{contactForm.value | json }} </pre>
-      <p>
-        <b>Valid</b> : {{contactForm.valid}}
-        <b>Touched</b> : {{contactForm.touched }}
-        <b>Submitted</b> : {{contactForm.submitted }}
-      </p>
+      <app-team-management></app-team-management>
       <!-- end -->
     </div>
   </div>
