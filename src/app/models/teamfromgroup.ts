@@ -7,8 +7,6 @@ export interface ITeamFormGroup extends FormGroup {
   // We need to add these manually again, same fields as ITeam
   controls: {
     teamName: AbstractControl;
-    noOfEmp: AbstractControl;
-    teamLead: AbstractControl;
-    department: AbstractControl;
+    employees: AbstractControl;
   };
 }
