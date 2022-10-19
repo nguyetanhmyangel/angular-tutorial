@@ -7,6 +7,6 @@ import { Component} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Template driven forms';
+  title = 'Form group';
 
 }

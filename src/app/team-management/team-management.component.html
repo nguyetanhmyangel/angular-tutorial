@@ -1,41 +1,75 @@
-<form [formGroup]="teamForm" (ngSubmit)="onFormSubmit()">
-  <p><b>Team Name : </b> <input formControlName="teamName">
-    <label *ngIf="teamName?.hasError('required')" class="error">
-      Team name required. </label>
-  </p>
-  <p><b>No. of Emp : </b> <input formControlName="noOfEmp">
-    <label *ngIf="teamName?.hasError('required')" class="error">
-      No. of Emp required. </label>
-  </p>
+<form class="row justify-content-md-center" [formGroup]="teamForm" (ngSubmit)="onFormSubmit()">
+  <div class="col-md-12">
+    <div class="form-group row">
+      <label for="example-text-input" class="col-md-12 col-form-label">Team name:</label>
+      <div class="col-md-8">
+        <input class="form-control" type="text" id="example-text-input" formControlName="teamName">
+      </div>
+      <div class="col-md-4"><label *ngIf="teamName?.hasError('required')" class="error">Team name required.</label>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-email-input" class="col-md-12 col-form-label">no of Emp:</label>
+      <div class="col-md-8">
+        <input class="form-control" type="email" id="example-email-input" formControlName="noOfEmp">
+      </div>
+      <div class="col-md-4"><label *ngIf="teamName?.hasError('required')" class="error">
+          No. of Emp required. </label></div>
+    </div>
 
-  <div formGroupName="teamLead" class="employee">
-    <b>Team Lead:</b>
-    <p>Name  : <input formControlName="empName">
-      <label *ngIf="teamLead.get('empName')?.hasError('required')" class="error">
-        Name required. </label>
-      </p>
-    <p>Age : <input formControlName="age">
-      <label *ngIf="teamLead.get('age')?.hasError('required')" class="error">
-        Age required. </label>
-      <label *ngIf="teamLead.get('age')?.hasError('min')" class="error">
-          Minimum age is 18. </label>
-    </p>
-    <p>City : <input formControlName="city">
-      <label *ngIf="teamLead.get('city')?.hasError('required')" class="error">
-        City required. </label>
-    </p>
-  </div>
+    <ng-container formGroupName="teamLead">
+      <div class="form-group row">
+        <label for="empName" class="col-md-12 col-form-label">Emp Name:</label>
+        <div class="col-md-8">
+          <input class="form-control" type="url" id="empName" formControlName="empName">
+        </div>
+        <div class="col-md-4"><label *ngIf="teamLead.get('empName')?.hasError('required')" class="error">
+            Emp Name required. </label></div>
+      </div>
+      <div class="form-group row">
+        <label for="age" class="col-md-12 col-form-label">Age:</label>
+        <div class="col-md-8">
+          <input class="form-control" type="url" id="age" formControlName="age">
+        </div>
+        <div class="col-md-4">
+          <label *ngIf="teamLead.get('age')?.hasError('required')" class="error">
+            Age required. </label>
+          <label *ngIf="teamLead.get('age')?.hasError('min')" class="error">
+            Minimum age is 18. </label>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="city" class="col-md-12 col-form-label">City:</label>
+        <div class="col-md-8">
+          <input class="form-control" type="url" id="city" formControlName="city">
+        </div>
+        <div class="col-md-4"><label *ngIf="teamLead.get('city')?.hasError('required')" class="error">
+            City required. </label></div>
+      </div>
+    </ng-container>
 
-  <div formGroupName="department" class="employee">
-    <b>Department:</b>
-    <p>Department Head : <input formControlName="deptHead">
-      <label *ngIf="department.get('deptHead')?.hasError('required')" class="error">
-        Department Head required. </label>
-    </p>
-    <p>Department Name : <input formControlName="deptName">
-      <label *ngIf="department.get('deptName')?.hasError('required')" class="error">
-        Department Name required. </label>
-    </p>
+    <ng-container formGroupName="department">
+      <div class="form-group row">
+        <label for="deptHead" class="col-md-12 col-form-label">dept Head:</label>
+        <div class="col-md-8">
+          <input class="form-control" type="url" id="deptHead" formControlName="deptHead">
+        </div>
+        <div class="col-md-4"><label *ngIf="department.get('deptHead')?.hasError('required')" class="error">
+            Department Head required. </label></div>
+      </div>
+      <div class="form-group row">
+        <label for="deptName" class="col-md-12 col-form-label">dept Name:</label>
+        <div class="col-md-8">
+          <input class="form-control" type="url" id="deptName" formControlName="deptName">
+        </div>
+        <div class="col-md-4"><label *ngIf="department.get('deptName')?.hasError('required')" class="error">
+            Department Name required. </label></div>
+      </div>
+    </ng-container>
+    <div class="form-group row">
+      <div class="col-md-12">
+        <button class="btn btn-primary mt-3" type="submit">Submit</button>
+      </div>
+    </div>
   </div>
-  <button  >SUBMIT</button>
 </form>

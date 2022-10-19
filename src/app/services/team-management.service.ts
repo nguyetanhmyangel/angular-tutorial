@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Team } from '../models/team';
+import { ITeam } from '../models/team';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,7 @@ import { Team } from '../models/team';
 export class TeamManagementService {
 
   constructor() { }
-  saveTeam(team: Team) {
+  saveTeam(team: ITeam) {
 		console.log('------------TEAM------------');
 		console.log('Team Name: ' + team.teamName);
 		console.log('Team Size: ' + team.noOfEmp);

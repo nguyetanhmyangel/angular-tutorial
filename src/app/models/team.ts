@@ -1,9 +1,9 @@
-import { Department } from "./department";
-import { Employee } from "./employee";
+import { IDepartment } from "./department";
+import { IEmployee } from "./employee";
 
-export interface Team {
+export interface ITeam {
 	teamName: string;
 	noOfEmp: number;
-	teamLead: Employee;
-	department: Department;
+	teamLead: IEmployee;
+	department: IDepartment;
 }

@@ -12,14 +12,25 @@
   </div>
 </div>
 
-<!-- <div class="container">
+<div class="container mb-3">
   <br />
   <div class='card'>
     <div class='card-header' #cardHeader>
       Explain
     </div>
     <div class="card-body">
-
+      <h4>Các thành phần cơ bản của form</h4>
+      <ul>
+        <li>AbstractControl là một abstract class cho 3 lớp con form control: FormControl, FormGroup, và FormArray. Nó cung
+          cấp các hành vi, thuộc tính chung cho các lớp con.</li>
+        <li>FormControl là đơn vị nhỏ nhất, nó lưu giữ giá trị và trạng thái hợp lệ của một form control. Tương ứng với một
+          HTML form control như input, select.</li>
+        <li>FormGroup nó lưu giữ giá trị và trạng thái hợp lệ của một nhóm các đối tượng thuộc AbstractControl – có thể là
+          FormControl, FormGroup, hay FormArray – đây là một dạng composite. Ở level cao nhất của một form trong component
+          của bạn là một FormGroup.</li>
+        <li>FormArray nó lưu giữ giá trị và trạng thái hợp lệ của một mảng các đối tượng thuộc AbstractControl giống như
+          FormGroup. Nó cũng là một dạng composite. Nhưng nó không phải là thành phần ở level cao nhất.</li>
+      </ul>
     </div>
   </div>
-</div> -->
+</div>
