@@ -32,6 +32,22 @@
         <li>FormArray nó lưu giữ giá trị và trạng thái hợp lệ của một mảng các đối tượng thuộc AbstractControl giống như
           FormGroup. Nó cũng là một dạng composite. Nhưng nó không phải là thành phần ở level cao nhất.</li>
       </ul>
+      <h4>FormArray:</h4>
+      <ul>
+        <li>controls : Array of child controls i.e. array of FormControl, FormGroup or FormArray instances.</li>
+        <li>validatorOrOpts : This is optional. This is the second argument in which we pass a synchronous validator or its array.</li>
+        <li>asyncValidator : This is optional. This is the third argument in which we pass an async validator or its array.</li>
+        <li>at(): Returns the AbstractControl instance for the given index. The AbstractControl is the base class for FormControl, FormGroup and FormArray classes.</li>
+        <li>push(): Inserts the new AbstractControl at the end of array.</li>
+        <li>insert(): Inserts a new AbstractControl at the given index in the array.</li>
+        <li>removeAt(): Removes the control at the given index in the array.</li>
+        <li>setControl(): Sets a new control replacing the old one.</li>
+        <li>setValue(): Sets the value to every control of this FormArray.</li>
+        <li>patchValue(): Patches the value to available controls starting from index 0.</li>
+        <li>reset(): Resets the values.</li>
+        <li>getRawValue(): The aggregate value of the array.</li>
+        <li>clear(): Removes all controls in this FormArray.</li>
+      </ul>
     </div>
   </div>
 </div>

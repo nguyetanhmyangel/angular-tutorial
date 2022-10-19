@@ -12,9 +12,7 @@ export class TeamManagementService {
 		console.log('Team Name: ' + team.teamName);
 		console.log('----- Employee Detail -----');
 		for (let emp of team.employees) {
-			console.log('Emp Name: ' + emp.empName);
-			console.log('Emp Age: ' + emp.age);
-			console.log('Emp City: ' + emp.city);
+			console.log('Emp Name: ' + emp);
 			console.log('-------------------');
 		}
 	}

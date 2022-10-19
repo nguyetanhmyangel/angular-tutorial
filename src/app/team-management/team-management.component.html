@@ -1,41 +1,25 @@
-<form class="form-inline" [formGroup]="teamForm" (ngSubmit)="onFormSubmit()">
+<form class="form-inline was-validated" [formGroup]="teamForm" (ngSubmit)="onFormSubmit()" novalidate>
   <div class="col-md-12">
     <div class="form-group row">
-      <label for="example-text-input" class="col-md-12 col-form-label">Team name:</label>
-      <div class="col-md-8">
-        <input class="form-control" type="text" id="example-text-input" formControlName="teamName" required>
-      </div>
-      <div class="col-md-4"><label *ngIf="teamName?.hasError('required')" class="error">Team name required.</label>
+      <div class="col-md-4">
+        <label for="example-text-input" class="col-form-label">Team name:</label>
+        <input class="form-control is-valid" type="text" id="example-text-input" formControlName="teamName" required>
+        <div class="invalid-feedback">
+          <label *ngIf="teamName?.dirty && teamName?.errors?.['required']" >Team name required.</label>
+        </div>
       </div>
     </div>
 
     <div formArrayName="employees">
-      <div *ngFor="let emp of employees.controls; let i = index" [formGroupName]="i">
+      <div *ngFor="let emp of employees.controls; let i = index" >
         <div class="form-group row">
           <div class="col-md-4">
-            <label for="empName" class="col-form-label">Employee {{i + 1}}:</label>
-            <input class="form-control" type="text" id="empName" formControlName="empName" required>
+            <label for="emp" class="col-form-label">Employee {{i + 1}}:</label>
+            <input class="form-control is-valid" type="text" id="emp" formControlName="empName" [formControlName]="i" required>
             <div class="invalid-feedback">
-              <label *ngIf="emp.get('empName')?.hasError('required')" class="error">
-                Employee name required. </label>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <label for="city" class="col-form-label">City:</label>
-            <input class="form-control" type="text" id="city" formControlName="city" required>
-            <div class="invalid-feedback">
-              <label *ngIf="emp.get('city')?.hasError('required')" class="error">
-                City required. </label>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <label for="age" class="col-form-label">Age:</label>
-            <input class="form-control" type="text" id="age" formControlName="age" required>
-            <div class="invalid-feedback">
-              <label *ngIf="emp.get('age')?.hasError('min')" class="error">
-                Minimum Age is 18. </label>
-              <label *ngIf="emp.get('age')?.hasError('required')" class="error">
-                Age required. </label>
+              <label *ngIf="employees?.errors?.['required']" class="error"> Employee required. </label>
+              <label *ngIf="employees?.errors?.['maxlength']" class="error">
+                Max number of Employee can be 5 only. </label>
             </div>
           </div>
           <div class="col-md-2">
@@ -49,9 +33,13 @@
     <div class="form-group row">
       <div class="col-md-12 mt-2">
         <button type="button" class="btn btn-primary" type="submit">Submit</button>&nbsp;
-        <button type="button" class="btn btn-primary" (click)="addEmployeeControl()">Add</button>&nbsp;
-        <button type="button" class="btn btn-success" (click)="resetEmployees()">Reset</button>&nbsp;
+        <button type="button" class="btn btn-secondary" (click)="addEmployeeControl()">Add</button>&nbsp;
+        <button type="button" class="btn btn-danger" (click)="resetEmployees()">Reset</button>&nbsp;
         <button type="button" class="btn btn-info" (click)="clearEmployeeControls()">Clear</button>&nbsp;
+        <button type="button" class="btn btn-warning" (click)="insertEmployeeControl()">Insert Employee at number 2</button>&nbsp;
+        <button type="button" class="btn btn-light" (click)="patchEmployeeValue()">Patch Value</button>&nbsp;
+        <button type="button" class="btn btn-dark" (click)="setEmployeeValue()">Create Default Employee List</button>&nbsp;
+        <button type="button" class="btn btn-warning" (click)="setEmployeeControl()">Set Default Employee at number 3</button>
       </div>
     </div>
   </div>
