@@ -1,185 +1,162 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { debounceTime, from, fromEvent, Observable, of } from 'rxjs';
+import { Component } from '@angular/core';
+import { filter, from, map, Observable, of, tap } from 'rxjs';
 
 
 @Component({
   selector: 'app-root',
-  template: `<button #btn>Button</button>`,
+  templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'Rxjs tutorial';
-  @ViewChild('btn', { static: true }) button!: ElementRef;
+  data: any = [];
 
-  buttonSubscription: any
+  observer = {
+    next: (value: any) => console.log(value),
+    error: (err: any) => console.error(err),
+    complete: () => console.log('Complete'),
+  };
 
-  constructor(private elm: ElementRef) {
+  //When you create an Observable with the constructor, you can just pass the type as a generic.
+  obs = new Observable<number>((observer) => {
+    observer.next(1)
+    observer.next(2)
+    observer.next(3)
+    observer.next(4)
+    observer.next(5)
+    observer.complete()
+  }).pipe(
+    tap(data => console.log('tap: ' + data)),       //tap
+    filter(data => data > 2),                      //filter
+    tap(data => console.log('filter: ' + data)),    //tap
+    map(val => { return val as number * 2 }),      //map
+    tap(data => console.log('final: ' + data)),     //tap
+  )
+
+  srcArray = from([1, 2, 3, 4]);
+  srcName$ = from(['John', 'Tom', 'Katy'])
+  srcObject = from([
+    { fName: 'Sachin', lName: "Tendulkar" },
+    { fName: 'Rahul', lName: "Dravid" },
+    { fName: 'Saurav', lName: "Ganguly" },
+  ]);
+
+  values = [
+    {
+      name: "John",
+      age: 30
+    },
+    {
+      name: "alex",
+      age: 40
+    }
+  ];
+
+  constructor() {
   }
 
   ngOnInit() {
+    // ---map ---
+    this.multiplyBy2();
+    this.toUpperCase();
+    this.MapToSingleProperty();
+    this.multipleMaps();
+    //---end ----
 
-    /*
-      //Observable from Create Method
-      const obsUsingCreate = Observable.create(function (observer: any) {
-      observer.next('Observable from Create Method')
-      observer.next('1')
-      observer.next('2')
-      observer.next('3')
+    //---filter ---
+    of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+      .pipe(
+        filter(val => {
+          return val % 2 == 0;
+        }),
+      )
+    //.subscribe(this.observer);
 
-      observer.complete()
-      });
+    from(this.values)
+      .pipe(
+        filter(val => {
+          return val.age > 30;
+        }),
+      )
+    //.subscribe(this.observer);
+    // --- end ---
 
-      obsUsingCreate.subscribe({
-        next: (val: any) => { console.log(val) },
-        error: () => { console.log('error') },
-        complete: () => { console.log('complete') }
-      })
-    */
+    //--- tab ----
+    of(1, 2, 3, 4, 5)
+      .pipe(
+        tap(val => {
+          console.log("Before " + val);
+        }),
+        map(val => {
+          if (val == 3) {
+            throw Error;
+          }
+          return val + 5;
+        }),
+        tap(
+          val => {
+            console.log("After " + val);
+          },
+          err => {
+            console.log("Tap Error");
+            console.log(err);
+          },
+          () => {
+            console.log("Tap Complete");
+          }
+        )
+      )
+      //.subscribe(val => console.log(val));
+    //--- end ----
 
-    /*
-      //Observable Using Constructor
-      const obsUsingConstructor = new Observable(observer => {
-      observer.next('Observable Using Constructor')
-      observer.next('1')
-      observer.next('2')
-      observer.next('3')
+    //---  ----
 
-      observer.complete()
-       })
+    //--- end ----
 
-       obsUsingConstructor.subscribe({
-         next: (val: any) => { console.log(val) },
-         error: () => { console.log('error') },
-         complete: () => { console.log('complete') }
-       })
-    */
+    // this.obs.subscribe(
+    //   val => {
+    //     this.data.push(val)
+    //     console.log('data: ', this.data)
+    //   }
+    // )
 
-    //observable from an array
-    // const array = [1, 2, 3, 4, 5, 6, 7]
-    // const obsof1 = of(array);
-    // obsof1.subscribe({
-    //   next: (val: any) => { console.log(val) },
-    //   error: () => { console.log('error') },
-    //   complete: () => { console.log('complete') }
-    // })
 
-    // const array1=[1,2,3,4,5,6,7]
-    // const array2=['a','b','c','d','e','f','g']
-    // const obsof2=of(array1,array2 );
-    // obsof2.subscribe({
-    //     next: (val: any) => { console.log(val) },
-    //     error: () => { console.log('error') },
-    //     complete: () => { console.log('complete') }
-    //   })
-
-    //observable from a sequence of numbers
-    // const obsof3 = of(1, 2, 3);
-    // obsof3.subscribe({
-    //   next: (val: any) => { console.log(val) },
-    //   error: () => { console.log('error') },
-    //   complete: () => { console.log('complete') }
-    // })
-
-    //observable from string
-    // const obsof4 = of('Hello', 'World');
-    // obsof4.subscribe({
-    //   next: (val: any) => { console.log(val) },
-    //   error: () => { console.log('error') },
-    //   complete: () => { console.log('complete') }
-    // })
-
-    //observable from a value, array & string
-    // const obsof5 = of(100, [1, 2, 3, 4, 5, 6, 7],"Hello World");
-    // obsof5.subscribe({
-    //   next: (val: any) => { console.log(val) },
-    //   error: () => { console.log('error') },
-    //   complete: () => { console.log('complete') }
-    // })
-
-    //observable from an array
-    // const array3 = [1, 2, 3, 4, 5, 6, 7]
-    // const obsfrom1 = from(array3);
-    // obsfrom1.subscribe({
-    //   next: (val: any) => { console.log(val) },
-    //   error: () => { console.log('error') },
-    //   complete: () => { console.log('complete') }
-    // })
-
-    //Observable from string
-    // const obsfrom2 = from('Hello World');
-    // obsfrom2.subscribe({
-    //   next: (val: any) => { console.log(val) },
-    //   error: () => { console.log('error') },
-    //   complete: () => { console.log('complete') }
-    // })
-
-    //Observable from collection
-    // let myMap = new Map()
-    // myMap.set(0, 'Hello')
-    // myMap.set(1, 'World')
-    // const obsFrom3 = from(myMap);
-    // obsFrom3.subscribe({
-    //   next: (val: any) => { console.log(val) },
-    //   error: () => { console.log('error') },
-    //   complete: () => { console.log('complete') }
-    // })
-
-    //Observable from iterable
-    // const obsFrom4 = from(this.generateNos())
-    // obsFrom4.subscribe({
-    //   next: (val: any) => { console.log(val) },
-    //   error: () => { console.log('error') },
-    //   complete: () => { console.log('complete') }
-    // })
-
-    //Observable from promise
-    // const promiseSource = from(new Promise(resolve => resolve('Hello World!')));
-    // const obsFrom5 = from(promiseSource);
-    // obsFrom5.subscribe({
-    //   next: (val: any) => { console.log(val) },
-    //   error: () => { console.log('error') },
-    //   complete: () => { console.log('complete') }
-    // })
 
   }
 
-  // *generateNos() {
-  //   var i = 0;
-  //   while (i < 5) {
-  //     i = i + 1;
-  //     yield i;
-  //   }
-  // }
-
-  ngAfterViewInit() {
-    this.buttonClick();
+  multiplyBy2() {
+    this.srcArray
+      .pipe(map(val => { return val * 2 }))
+    //.subscribe(val => { console.log(val)})
+    //.subscribe(this.observer)
   }
 
-  buttonClick() {
-    this.buttonSubscription = fromEvent(this.button.nativeElement, 'click')
-      .pipe(debounceTime(300))
-      .subscribe(res => console.log(res));
+
+  multipleMaps() {
+    this.srcArray
+    .pipe(
+      map(val => {
+        return val + 10;
+      }), // [1,2,3,4] => [11,12,13,14]
+      map((val, i) => {
+        return val*i* 2;
+      })) // val*2 = [11,12,13,14] => [22,24,26,28] ; val*i*2 = [0,24,52,84]
+    //.subscribe(val => { console.log(val) })
   }
 
-  ngOnDestroy() {
-    this.buttonSubscription.unsubscribe()
+  toUpperCase() {
+    this.srcName$
+      .pipe(map(data => {
+        return data.toUpperCase();
+      }))
+    //.subscribe(this.observer)
   }
 
-  //fromevent from scroll
-  // scroll() {
-  //   const source = fromEvent(window, 'scroll');
-  //   source.subscribe(val => console.log(val));
-  // }
-
-  //fromevent from keyup
-
-
-  // @ViewChild('name', { static: true }) name: ElementRef;
-
-  // ngAfterViewInit() {
-  //   fromEvent(this.name.nativeElement, 'keyup')
-  //     .subscribe(res => console.log(res));
-  // }
-
-
+  MapToSingleProperty() {
+    this.srcObject
+      .pipe(map(data => { return (data.fName + ' ' + data.lName).toUpperCase() }))
+    //.subscribe(this.observer)
+  }
 }
+
+
