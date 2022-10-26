@@ -6,6 +6,46 @@
     </div>
     <div class="card-body">
       <!-- start -->
+      <form class="row g-3">
+        <div class="col-auto">
+          <label for="username" class="visually-hidden">Email</label>
+          <input type="text" class="form-control" id="username" name="userName" [(ngModel)]="userName">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3" (click)="getRepos()">Get Repos</button>
+        </div>
+      </form>
+
+
+      <div *ngIf="loading">loading...</div>
+
+      <div *ngIf="errorMessage" class="alert alert-warning">
+        <strong>Warning!</strong> {{errorMessage | json}}
+      </div>
+
+      <div class="table-responsive">
+        <table class='table'>
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>HTML Url</th>
+              <th>description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let repo of repos;">
+              <td>{{repo.id}}</td>
+              <td>{{repo.name}}</td>
+              <td>{{repo.html_url}}</td>
+              <td>{{repo.description}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <pre>{{repos | json}}</pre>
 
       <!-- end -->
     </div>
@@ -19,7 +59,8 @@
       Explain
     </div>
     <div class="card-body">
-      
+
+      <a href="https://rxjs.dev/deprecations/subscribe-arguments">subscribe arguments</a>
     </div>
   </div>
 </div>

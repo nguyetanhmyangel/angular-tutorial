@@ -3,7 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { GitHubService } from './services/github.service';
 
 @NgModule({
   declarations: [
@@ -12,10 +14,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [GitHubService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
