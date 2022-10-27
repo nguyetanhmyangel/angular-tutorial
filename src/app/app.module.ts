@@ -5,11 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { GitHubService } from './services/github.service';
+import { HelloComponent } from './hello/hello.component';
+import { ArticleListComponent } from './article-list/article-list.component';
+import { ArticleDetailComponent } from './article-detail/article-detail.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HelloComponent,
+    ArticleListComponent,
+    ArticleDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -17,7 +22,7 @@ import { GitHubService } from './services/github.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [GitHubService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

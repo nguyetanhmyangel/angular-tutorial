@@ -1,55 +1,19 @@
 <div class="container">
-  <br />
-  <div class='card'>
-    <div class='card-header'>
-      {{title}} example
-    </div>
-    <div class="card-body">
-      <!-- start -->
-      <form class="row g-3">
-        <div class="col-auto">
-          <label for="username" class="visually-hidden">Email</label>
-          <input type="text" class="form-control" id="username" name="userName" [(ngModel)]="userName">
-        </div>
-        <div class="col-auto">
-          <button type="submit" class="btn btn-primary mb-3" (click)="getRepos()">Get Repos</button>
-        </div>
-      </form>
+  <h2 class="mb-4">
+    <a href="https://github.com/angular-vietnam/100-days-of-angular/blob/master/Day027-router.md"
+       target="_blank">
+      Angular Router
+    </a>
+  </h2>
 
-
-      <div *ngIf="loading">loading...</div>
-
-      <div *ngIf="errorMessage" class="alert alert-warning">
-        <strong>Warning!</strong> {{errorMessage | json}}
-      </div>
-
-      <div class="table-responsive">
-        <table class='table'>
-          <thead class="table-light">
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>HTML Url</th>
-              <th>description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let repo of repos;">
-              <td>{{repo.id}}</td>
-              <td>{{repo.name}}</td>
-              <td>{{repo.html_url}}</td>
-              <td>{{repo.description}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-
-      <pre>{{repos | json}}</pre>
-
-      <!-- end -->
-    </div>
-  </div>
+  <ul class="nav nav-pills card-header-pills">
+    <li class="nav-item">
+      <a class="nav-link"
+         routerLink="/">Home
+      </a>
+    </li>
+  </ul>
+  <router-outlet></router-outlet>
 </div>
 
 <div class="container mb-3">
