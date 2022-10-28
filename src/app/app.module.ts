@@ -4,23 +4,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { HelloComponent } from './hello/hello.component';
-import { ArticleListComponent } from './article-list/article-list.component';
-import { ArticleDetailComponent } from './article-detail/article-detail.component';
+import { ArticleModule } from './article/article.module';
+// import { ArticleComponent } from './article/article.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HelloComponent,
-    ArticleListComponent,
-    ArticleDetailComponent
+    HelloComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    ArticleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
