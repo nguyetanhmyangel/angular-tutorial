@@ -4,12 +4,12 @@ import { ArticleDetailComponent } from './article-detail/article-detail.componen
 import { ArticleListComponent } from './article-list/article-list.component';
 
 const routes: Routes = [{
-  path: ':slug',
-  component: ArticleDetailComponent,
+  path: 'article',
+  component: ArticleListComponent,
 },
 {
-  path: '',
-  component: ArticleListComponent,
+  path: 'article/:slug',
+  component: ArticleDetailComponent,
 }];
 
 @NgModule({
