@@ -1,24 +1,32 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, } from '@angular/forms';
 import { HelloComponent } from './hello/hello.component';
-import { ArticleModule } from './article/article.module';
-// import { ArticleComponent } from './article/article.component';
+import { ContactComponent } from './contact/contact.component';
+import { ProductComponent } from './product/product.component';
+import { HomeComponent } from './home/home.component';
+import { ErrorComponent } from './error/error.component';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './app.routes';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HelloComponent
+    HelloComponent,
+    ContactComponent,
+    ProductComponent,
+    HomeComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
-    ArticleModule
+    
+    RouterModule.forRoot(appRoutes)                           /*path location strategy */
+    /*RouterModule.forRoot(appRoutes, { useHash: true }) */   /*Hashlocationstrategy */
   ],
   providers: [],
   bootstrap: [AppComponent]
