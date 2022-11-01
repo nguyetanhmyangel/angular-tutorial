@@ -28,11 +28,25 @@ export class ProductDetailComponent implements OnInit {
 
   /* Using Subscribe */
   ngOnInit(): void {
-    this.productSubscribe = this._activatedRoute.paramMap.subscribe(params => {
+    // this.productSubscribe = this._activatedRoute.paramMap.subscribe(params => {
+    //   console.log("params", params);
+
+    //   this.id = params.get('id');
+    //   let products = this._productService.getProducts();
+    //   this.product = products.find(p => p.productID == this.id)!;
+
+    //   console.log("productSubscribe", this.productSubscribe);
+    //   console.log("products", products);
+    // });
+
+
+    this.productSubscribe = this._activatedRoute.params.subscribe(params => {
       console.log("params", params);
-      this.id = params.get('id');
+
+      this.id = params['id'];
       let products = this._productService.getProducts();
       this.product = products.find(p => p.productID == this.id)!;
+
       console.log("productSubscribe", this.productSubscribe);
       console.log("products", products);
     });
