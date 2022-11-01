@@ -1,21 +1,28 @@
 <div class="container">
-
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" [routerLink]="['/']"><strong> {{title}} </strong></a>
+      <a class="navbar-brand" [routerLink]="['/']"><strong> {{title}} </strong></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" [routerLink]="['home']">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['product']">Product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['contact']">Contact us</a></li>
+        </ul>
       </div>
-      <ul class="nav navbar-nav">
-          <li><a [routerLink]="['home']">Home</a></li>
-          <li><a [routerLink]="['product']">Product</a></li>
-          <li><a [routerLink]="['contact']">Contact us</a></li>
-      </ul>
     </div>
   </nav>
+  <router-outlet></router-outlet>
+</div>
 
-   <router-outlet></router-outlet>
 
-  </div>
 
 <div class="container mb-3">
   <br />
@@ -24,7 +31,23 @@
       Explain
     </div>
     <div class="card-body">
-
+      <h4>ActivatedRoute</h4>
+      <p>The ActivatedRoute service has a great deal of useful information including:</p>
+      <ol>
+        <li>url: This property returns an array of Url Segment objects, each of which describes a single segment in the URL that matched the current route.</li>
+        <li>params: This property returns a Params object, which describes the URL parameters, indexed by name.</li>
+        <li>queryParams: This property returns a Params object, which describes the URL query parameters, indexed by name.</li>
+        <li>fragment: This property returns a string containing the URL fragment.</li>
+        <li>Snapshot: The initial snapshot of this route</li>
+        <li>data: An Observable that contains the data object provided for the route</li>
+        <li>Component: The component of the route. It’s a constant</li>
+        <li>outlet: The name of the RouterOutlet used to render the route. For an unnamed outlet, the outlet name is primary.</li>
+        <li>routeConfig: The route configuration used for the route that contains the origin path.</li>
+        <li>parent: an ActivatedRoute that contains the information from the parent route when using child routes.</li>
+        <li>firstChild: contains the first ActivatedRoute in the list of child routes.</li>
+        <li>children: contains all the child routes activated under the current route</li>
+        <li>pathFromRoot: The path from the root of the router state tree to this route</li>
+      </ol>
       <a href="https://rxjs.dev/deprecations/subscribe-arguments">subscribe arguments</a>
     </div>
   </div>
