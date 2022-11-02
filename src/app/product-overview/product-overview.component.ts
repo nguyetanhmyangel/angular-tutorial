@@ -18,8 +18,8 @@ export class ProductOverviewComponent implements OnInit {
 
   ngOnInit() {
 
-    this.sub = this._activatedRoute.parent!.params.subscribe(params => {
-      this.id = params['id'];
+    this.sub = this._activatedRoute.parent!.paramMap.subscribe(params => {
+      this.id = params.get('id');
       let products = this._productService.getProducts();
       this.product = products.find(p => p.productID == this.id)!;
     });
