@@ -1,15 +1,32 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from '../models/product';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-product-spec',
-  templateUrl: './product-spec.component.html',
-  styleUrls: ['./product-spec.component.css']
+  template: `<h3> Specification of {{product.name}} <h3>`
 })
 export class ProductSpecComponent implements OnInit {
+  product!: Product;
+  id: any;
+  sub: any
 
-  constructor() { }
+  constructor(private _activatedRoute: ActivatedRoute, private _productService: ProductService) {
+  }
 
-  ngOnInit(): void {
+
+  ngOnInit() {
+    this.sub = this._activatedRoute.parent!.params.subscribe(params => {
+      this.id = params['id'];
+      let products = this._productService.getProducts();
+      this.product = products.find(p => p.productID == this.id)!;
+    });
+  }
+
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

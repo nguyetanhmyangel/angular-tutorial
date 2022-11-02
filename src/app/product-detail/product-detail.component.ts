@@ -11,11 +11,11 @@ import { ProductService } from '../services/product.service';
 export class ProductDetailComponent implements OnInit {
   product!: Product;
   id: any;
+  productSubscribe: any;
+
   constructor(private _activatedRoute: ActivatedRoute,
     private _router: Router,
     private _productService: ProductService) { }
-
-  productSubscribe: any;
 
   /* Using snapshot */
   //  ngOnInit() {
