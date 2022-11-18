@@ -6,22 +6,37 @@
     </div>
     <div class="card-body">
       <!-- start -->
-      <form class="row g-3">
-        <div class="col-auto">
-          <label for="username" class="visually-hidden">Email</label>
-          <input type="text" class="form-control" id="username" name="userName" [(ngModel)]="userName">
+      <form class="row g-3 mt-3">
+        <div class="row">
+          <div class="col-auto">
+            <label for="username" class="form-label">User Name</label>
+            <input type="text" class="form-control" id="username" name="userName" [(ngModel)]="userName">
+          </div>
+          <div class="col-auto">
+            <label for="pageNo" class="form-label">Page No</label>
+            <input type="text" class="form-control" id="pageNo" name="pageNo" [(ngModel)]="pageNo">
+          </div>
+          <div class="col-auto">
+            <label for="sortOn" class="form-label">Sort On</label>
+            <input type="text" class="form-control" id="sortOn" name="sortOn" [(ngModel)]="sortOn">
+          </div>
         </div>
-        <div class="col-auto">
-          <button type="submit" class="btn btn-primary mb-3" (click)="getRepos()">Get Repos</button>
+        <div class="row">
+          <div class="col-auto mt-2">
+            <button type="submit" class="btn btn-primary mb-3" (click)="getRepos()">Get Repos</button>
+          </div>
         </div>
-      </form>
 
+
+      </form>
+      <br>
 
       <div *ngIf="loading">loading...</div>
 
       <div *ngIf="errorMessage" class="alert alert-warning">
         <strong>Warning!</strong> {{errorMessage | json}}
       </div>
+      <br>
 
       <div class="table-responsive">
         <table class='table'>
