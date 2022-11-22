@@ -2,7 +2,8 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" [routerLink]="['/']"><strong> {{title}} </strong></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -11,10 +12,14 @@
             <a class="nav-link" aria-current="page" [routerLink]="['home']">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['product']">Product</a>
+            <a class="nav-link" [routerLink]="['product']" [queryParams]="{ pageNum: pageNum }">Product</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['contact']">Contact us</a></li>
+            <a class="nav-link" [routerLink]="['contact']">Contact us</a>
+          </li>
+          <div class="d-flex">
+            <input class="form-control me-2" type="text" placeholder="Page No" aria-label="Search" [(ngModel)]="pageNum">
+          </div>
         </ul>
       </div>
     </div>
@@ -32,22 +37,35 @@
     </div>
     <div class="card-body">
       <h4>ActivatedRoute</h4>
-      <p>The ActivatedRoute service has a great deal of useful information including:</p>
+      <p>- The ActivatedRoute service has a great deal of useful information including:</p>
       <ol>
-        <li>url: This property returns an array of Url Segment objects, each of which describes a single segment in the URL that matched the current route.</li>
+        <li>url: This property returns an array of Url Segment objects, each of which describes a single segment in the
+          URL that matched the current route.</li>
         <li>params: This property returns a Params object, which describes the URL parameters, indexed by name.</li>
-        <li>queryParams: This property returns a Params object, which describes the URL query parameters, indexed by name.</li>
+        <li>queryParams: This property returns a Params object, which describes the URL query parameters, indexed by
+          name.</li>
         <li>fragment: This property returns a string containing the URL fragment.</li>
         <li>Snapshot: The initial snapshot of this route</li>
         <li>data: An Observable that contains the data object provided for the route</li>
         <li>Component: The component of the route. It’s a constant</li>
-        <li>outlet: The name of the RouterOutlet used to render the route. For an unnamed outlet, the outlet name is primary.</li>
+        <li>outlet: The name of the RouterOutlet used to render the route. For an unnamed outlet, the outlet name is
+          primary.</li>
         <li>routeConfig: The route configuration used for the route that contains the origin path.</li>
         <li>parent: an ActivatedRoute that contains the information from the parent route when using child routes.</li>
         <li>firstChild: contains the first ActivatedRoute in the list of child routes.</li>
         <li>children: contains all the child routes activated under the current route</li>
         <li>pathFromRoot: The path from the root of the router state tree to this route</li>
       </ol>
+      <p>
+        - The angular does not create the component if it is already present in the DOM. It reuses the component instance
+
+        This implies that the ngOnInit life cycle hook is not invoked when the user navigates to the component again. We
+        are retrieving the parameter value in the ngOnInit using the snapshot method. Hence our component does not
+        update itself.
+
+        This issue can be rectified by subscribing to the observable params property. Our component will be notified,
+        whenever the value of the parameter changes. So that we can update the component accordingly.
+      </p>
       <a href="https://rxjs.dev/deprecations/subscribe-arguments">subscribe arguments</a>
     </div>
   </div>
